@@ -1,17 +1,15 @@
 
 
-function countWord (arr){
-  let result = arr.reduce(function (allNames, name) {
-    //console.log(allNames)
-    if (name in allNames){
-       allNames[name]++;
-    }else{
-       allNames[name]=1
-    }
-    
-    return allNames;
+function groupBy (objectArray,property){
+  let result = objectArray.reduce(function(acc,curObj){
+      let key = curObj[property] 
+      if(!acc[key]){
+        acc[key] = [];
+      }  
+         acc[key].push(curObj)
+      return acc;
   },{})
-  return result;
+  return result
 }
 
 let people = [
@@ -20,6 +18,7 @@ let people = [
   { name: 'Jane', age: 20 }
 ];
 let groupedPeople = groupBy(people, 'age')
+console.log(groupedPeople)
 // groupedPeople is:
 // { 
 //   20: [
